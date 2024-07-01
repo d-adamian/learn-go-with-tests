@@ -1,5 +1,50 @@
 package word_combinations
 
+import "strings"
+
+func FindLongestCombinedWord(line string) string {
+	words := strings.Fields(line)
+
+	wordSet := make(map[string]bool)
+	for _, w := range words {
+		wordSet[w] = true
+	}
+
+	longestWord := ""
+	subsets := AllSubsets(words)
+	for _, subset := range subsets {
+		orders := AllOrders(subset)
+		for _, orderedWords := range orders {
+			if len(orderedWords) <= 1 {
+				continue
+			}
+
+			combined := strings.Join(orderedWords, "")
+			if len(combined) > len(longestWord) && wordSet[combined] {
+				longestWord = combined
+			}
+		}
+	}
+	return longestWord
+}
+
+func AllSubsets(words []string) [][]string {
+	switch {
+	case len(words) == 0:
+		return nil
+	case len(words) <= 1:
+		return [][]string{words}
+	default:
+		var result [][]string
+		for i := range words {
+			rest := withoutWord(words, i)
+			result = append(result, AllSubsets(rest)...)
+		}
+		result = append(result, words)
+		return result
+	}
+}
+
 func AllOrders(words []string) [][]string {
 	switch {
 	case len(words) == 0:
