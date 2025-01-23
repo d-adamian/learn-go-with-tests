@@ -54,5 +54,3 @@ func assertPost(t *testing.T, got blogposts.Post, want blogposts.Post) {
 		t.Errorf("got %+v, want %+v", got, want)
 	}
 }
-
-// Continue at https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/reading-files#write-the-test-first-2
