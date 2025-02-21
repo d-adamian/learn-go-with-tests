@@ -22,4 +22,4 @@ func main() {
 	}
 }
 
-// Continue at https://quii.gitbook.io/learn-go-with-tests/build-an-application/time
+// Continue at https://quii.gitbook.io/learn-go-with-tests/build-an-application/websockets
